@@ -10,6 +10,20 @@ dotenv.config({
 
 import connectDB from "./db/index.js";
 connectDB()
+.then(() => {
+    app.on("error",(error) => {
+        console.error("Error starting the server:", error)
+    })
+    app.listen(process.env.port||8000, () => {
+        console.log(`Server is running on port ${process.env.port}`)
+    })
+})
+
+.catch((error) => {
+    // can use console.log or for err console.error but log can also be used for error
+    console.error(" MongoDB conn failed:", error);
+    throw error;
+})
 
 
 
