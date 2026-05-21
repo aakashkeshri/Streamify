@@ -8,14 +8,16 @@ dotenv.config({
 });
 // to use import we also changed dev statement in package.json
 
+import { app } from "./app.js";
 import connectDB from "./db/index.js";
+
 connectDB()
 .then(() => {
     app.on("error",(error) => {
         console.error("Error starting the server:", error)
     })
-    app.listen(process.env.port||8000, () => {
-        console.log(`Server is running on port ${process.env.port}`)
+    app.listen(process.env.PORT || 8000, () => {
+        console.log(`Server is running on port ${process.env.PORT || 8000}`)
     })
 })
 
